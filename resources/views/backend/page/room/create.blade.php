@@ -85,8 +85,13 @@
                     </div>
                 </div>
                 <div class="custom-file mb-3">
-                    <input type="file" class="custom-file-input" name="image" />
+                    <input type="file" class="custom-file-input @error('image') is-invalid @enderror" name="image" />
                     <label class="custom-file-label">Choose file (Photo)</label>
+                    @error('image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                     @enderror
                 </div>
                 <div class="form-group">
                     <label>Description</label>

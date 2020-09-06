@@ -108,28 +108,28 @@
                     <tbody>
                         <tr>
                             <td>BKG-0001</td>
-                            <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""> Denise</td>
+                            <td><img width="28" height="28" src="{{asset('assets/img/user.jpg')}}" class="rounded-circle m-r-5" alt=""> Denise</td>
                             <td >Single</td>
                             <td>987654321 </td>
                             <td><span class="custom-badge status-red">Inactive</span></td>
                         </tr>
                         <tr>
                             <td>BKG-0002</td>
-                            <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""> John</td>
+                            <td><img width="28" height="28" src="{{asset('assets/img/user.jpg')}}" class="rounded-circle m-r-5" alt=""> John</td>
                             <td>Double</td>
                             <td>987654321 </td>
                             <td><span class="custom-badge status-green">active</span></td>
                         </tr>
                         <tr>
                             <td>BKG-0003</td>
-                            <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""> Denise</td>
+                            <td><img width="28" height="28" src="{{asset('assets/img/user.jpg')}}" class="rounded-circle m-r-5" alt=""> Denise</td>
                             <td>Single</td>
                             <td>987654321 </td>
                             <td><span class="custom-badge status-green">active</span></td>
                         </tr>
                         <tr>
                             <td>BKG-0004</td>
-                            <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""> John</td>
+                            <td><img width="28" height="28" src="{{asset('assets/img/user.jpg')}}" class="rounded-circle m-r-5" alt=""> John</td>
                             <td>Double</td>
                             <td>987654321 </td>
                             <td><span class="custom-badge status-green">active</span></td>
@@ -210,28 +210,28 @@
                     <tbody>
                         <tr>
                             <td>201</td>
-                            <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""></td>
+                            <td><img width="28" height="28" src="{{asset('assets/img/user.jpg')}}" class="rounded-circle m-r-5" alt=""></td>
                             <td>Single</td>
                             <td>AC</td>
                             <td>Free Breakfast & Dinner</td>
                         </tr>
                         <tr>
                             <td>202</td>
-                            <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""></td>
+                            <td><img width="28" height="28" src="{{asset('assets/img/user.jpg')}}" class="rounded-circle m-r-5" alt=""></td>
                             <td>Double</td>
                             <td>Non-AC</td>
                             <td>Free Breakfast</td>
                         </tr>
                         <tr>
                             <td>203</td>
-                            <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""></td>
+                            <td><img width="28" height="28" src="{{asset('assets/img/user.jpg')}}" class="rounded-circle m-r-5" alt=""></td>
                             <td>Single</td>
                             <td>Non-AC</td>
                             <td>Free Lunch</td>
                         </tr>
                         <tr>
                             <td>204</td>
-                            <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""></td>
+                            <td><img width="28" height="28" src="{{asset('assets/img/user.jpg')}}" class="rounded-circle m-r-5" alt=""></td>
                             <td>Quad</td>
                             <td>AC</td>
                             <td>Free Breakfast</td>

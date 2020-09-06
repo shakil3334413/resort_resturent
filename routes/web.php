@@ -44,7 +44,8 @@ Route::group(['middleware'=>['assign.guard:admin,admin/login']],function(){
             Route::resource('brand', 'BrandController');
             Route::resource('item', 'ItemController');
             Route::resource('stock', 'StockController');
-
+            Route::get('/category/{category}/subcategory', 'StockController@getsubcategory');
+            Route::get('/add-stock','StockController@stock');
             });
         });
     });

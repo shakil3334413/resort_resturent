@@ -22,7 +22,7 @@ class CreateRoomsTable extends Migration
             //         ->onUpdate('cascade');
             $table->string('ac_non_ac')->nullable();
             $table->string('bed');
-            $table->string('food');
+            $table->string('food')->nullable();
             $table->string('rent');
             $table->string('description')->nullable();
             $table->string('image')->nullable();

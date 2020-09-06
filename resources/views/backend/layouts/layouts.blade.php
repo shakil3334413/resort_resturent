@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-
-<!-- Mirrored from dreamguys.co.in/preadmin/hotel/default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Nov 2019 21:42:12 GMT -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -14,18 +11,16 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico')}}">
     <title>Hotel - Bootstrap 4 Admin Template</title>
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/morris/morris.css') }}">
-    <link rel="stylesheet" type="text/css" href={{ asset('"assets/css/jquery.circliful.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/morris/morris.css')}}">
+    {{--  <link rel="stylesheet" type="text/css" href={{ asset('assets/css/jquery.circliful.css')}}">  --}}
+    <link rel="stylesheet" type="text/css" href={{ asset('assets/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href={{ asset('assets/css/bootstrap-datetimepicker.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-    <!--[if lt IE 9]>
-		<script src="assets/js/html5shiv.min.js"></script>
-		<script src="assets/js/respond.min.js"></script>
-	<![endif]-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -122,11 +117,18 @@
                 <li class="nav-item dropdown d-none d-sm-block">
                     <a href="javascript:void(0);" id="open_msg_box" class="hasnotifications nav-link"><i class="fa fa-comment-o"></i> <span class="badge badge-pill bg-primary float-right">8</span></a>
                 </li>
+                <li class="nav-item  d-none d-sm-block">
+                    <a href="{{route('admin.logout')}}" id="" class="nav-link"  onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                         <span class="user-img"><img class="rounded-circle" src="{{asset('assets/img/user.jpg')}}" width="40" alt="Admin">
 							<span class="status online"></span></span>
-                        <span>Admin</span>
+                        <span>{{ Auth::user()->name }}</span>
                     </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="profile.html">My Profile</a>
@@ -157,7 +159,7 @@
                         <li class="submenu">
 							<a href="#"><i class="fa fa-suitcase" aria-hidden="true"></i><span> Category</span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-                                <li><a href="{{route('category.index')}}">All Category</a></li>
+                                <li><a href="{{url('category.index')}}">All Category</a></li>
                                 <li><a href="{{route('category.create')}}">Add Category</a></li>
 							</ul>
                         </li>
@@ -381,7 +383,7 @@
         </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
-     <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{asset('assets/js/jquery-3.2.1.min.js') }}"></script>
 	<script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
@@ -390,10 +392,27 @@
     <script src="{{ asset('assets/plugins/morris/morris.js') }}"></script>
     <script src="{{ asset('assets/plugins/raphael/raphael-min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.circliful.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
+    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
-
+    <script>
+        $(document).ready(function() {
+        $('select[name=category_id]').change(function() {
+            var url = '{{ url('admin/category') }}' + '/' + $(this).val() + '/subcategory';
+            $.get(url, function(data) {
+                var select = $('form select[name=subcategory_id]');
+                select.empty();
+                $.each(data,function(key, value) {
+                    select.append('<option value=' + value.id + '>' + value.name + '</option>');
+                });
+            });
+        });
+    });
+    </script>
 </body>
 
-
-<!-- Mirrored from dreamguys.co.in/preadmin/hotel/default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Nov 2019 21:42:31 GMT -->
 </html>

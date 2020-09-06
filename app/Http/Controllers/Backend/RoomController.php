@@ -46,6 +46,7 @@ class RoomController extends Controller
             'room_number' => 'required|unique:rooms',
             'roomtype_id' => 'required',
             'rent' => 'required',
+            'image'=>'image|mimes:jpg,png,jpeg',
         ]);
 
         if ($validator->fails()) {
@@ -121,6 +122,7 @@ class RoomController extends Controller
             'room_number' => 'required|unique:rooms,id,:id'.$id,
             'rent' => 'required',
             'roomtype_id' => 'required',
+            'image'=>'image|mimes:jpg,png,jpeg',
         ]);
 
         if ($validator->fails()) {

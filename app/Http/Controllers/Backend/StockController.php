@@ -10,6 +10,7 @@ use App\Model\SubCategory;
 use App\Model\Brand;
 use App\Model\Item;
 use App\Model\Stock;
+use DB;
 class StockController extends Controller
 {
     /**
@@ -19,7 +20,8 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stock=Stock::latest()->with('')->get();
+        $stock=Stock::latest()->with('category','subcategory','brand','item')->get();
+        // return $stock;
         return view('backend.page.stock.index',compact('stock'));
     }
 
@@ -30,7 +32,11 @@ class StockController extends Controller
      */
     public function create()
     {
-        return view('backend.page.stock.create');
+         $category=Category::latest()->where('status','=',1)->get();
+        $subcategory=SubCategory::latest()->where('status','=',1)->get();
+        $brand=Brand::latest()->where('status','=',1)->get();
+        $item=Item::latest()->where('status','=',1)->get();
+        return view('backend.page.stock.create',compact('category','subcategory','brand','item'));
     }
 
     /**
@@ -46,7 +52,6 @@ class StockController extends Controller
             'single_price' => 'required',
             'quntity' => 'required',
             'item_id' => 'required',
-            'total_price' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -61,7 +66,7 @@ class StockController extends Controller
         $stock->single_price=$request->single_price;
         $stock->quntity=$request->quntity;
         $stock->item_id=$request->item_id;
-        $stock->total_price=$request->total_price;
+        $stock->total_price=$request->quntity * $request->single_price;
         $stock->status=$request->status ?? 1;
         $stock->save();
         return redirect()->route('stock.index');
@@ -111,4 +116,29 @@ class StockController extends Controller
     {
         //
     }
+
+
+    public function dynamicsubcategoryFetch(Request $request){
+        $select = $request->get('select');
+        $category_id = $request->get('category_id');
+        $dependent = $request->get('dependent');
+        $data = DB::table('sub_categories')
+           ->where($select, $category_id)
+           ->groupBy($dependent)
+           ->get();
+         $output = '<option value="">Select '.ucfirst($dependent).'</option>';
+         foreach($data as $row)
+         {
+          $output .= '<option value="'.$row->$dependent.'">'.$row->$dependent.'</option>';
+         }
+         echo $output;
+        }
+        public function stock(){
+            return view('backend.page.stock.create');
+        }
+    
+        public function getsubcategory($category){
+            return DB::table('sub_categories')->where('category_id',$category)->get();
+        }
+
 }
